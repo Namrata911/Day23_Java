@@ -35,6 +35,8 @@ public static void main(String[] args){
 
 	int dailyWage=wagePerHr*workingHrs;
 	System.out.println("Daily full time employee wage is "+dailyWage);
+	int monthlyWage=dailyWage*20;
+	System.out.println("Monthly wage of an employee is "+monthlyWage);
 }
 
 }
