@@ -15,30 +15,36 @@ public static void main(String[] args){
       }
 
    int wagePerHr=20;
-   final int fulldayHour=8;
-   final int partTimeHour=4;
-   int workingHrs=0;
-   final int check = (int)Math.floor(Math.random()*10)%2; // 0 for full time,1 for part time
-   switch(check){
-   case 0:
-         workingHrs=fulldayHour;
-         break;
-   case 1:
-         workingHrs=partTimeHour;
-         break;
-   default:
-         System.out.println("Bad inputs");
-         break;
+   wageCompute(wagePerHr);
 
-
-   }
-
-   int dailyWage=wagePerHr*workingHrs;
-   System.out.println("Daily full time employee wage is "+dailyWage);
-   int monthlyWage=dailyWage*20;
-   System.out.println("Monthly wage of an employee is "+monthlyWage);
    wageTillCondition(wagePerHr);
 
+}
+
+//Use case 7 -- Created separate method to compute wage for employee
+public static void wageCompute(int wagePerHr) {
+	   final int fulldayHour=8;
+	   final int partTimeHour=4;
+	   int workingHrs=0;
+	   final int check = (int)Math.floor(Math.random()*10)%2; // 0 for full time,1 for part time
+	   switch(check){
+	   case 0:
+	         workingHrs=fulldayHour;
+	         break;
+	   case 1:
+	         workingHrs=partTimeHour;
+	         break;
+	   default:
+	         System.out.println("Bad inputs");
+	         break;
+
+
+	   }
+
+	   int dailyWage=wagePerHr*workingHrs;
+	   System.out.println("Daily full time employee wage is "+dailyWage);
+	   int monthlyWage=dailyWage*20;
+	   System.out.println("Monthly wage of an employee is "+monthlyWage);
 }
 
 
@@ -82,5 +88,4 @@ while(hoursReached<maxHours) {
 
 
 }
-
 
