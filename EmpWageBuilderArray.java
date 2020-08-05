@@ -1,22 +1,23 @@
+import java.util.LinkedList;
 
 public class EmpWageBuilderArray implements IComputeEmpWage{
 	
-	private int numOfCompany=0;
-	private EmpWageCompute[] companyEmpWageArray;
+	private LinkedList<EmpWageCompute> companyEmpWageList;
 	
 	public EmpWageBuilderArray() {
-	  companyEmpWageArray = new EmpWageCompute[5];
+		companyEmpWageList = new LinkedList<>(); //UC 12 -- used linked list
 	}
 	
 	public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs)  {
-		companyEmpWageArray[numOfCompany]= new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs);
-		numOfCompany++;
+		companyEmpWageList.add(new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs));
+		
 	}
 	
 	public void computeEmpWage() {
-		for(int i =0;i<numOfCompany;i++) {
-			companyEmpWageArray[i].setTotalWage(this.monthlyWageCompute(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+		for(int i =0;i<companyEmpWageList.size();i++) {
+			EmpWageCompute empwagecompute = companyEmpWageList.get(i);
+			empwagecompute.setTotalWage(this.monthlyWageCompute(empwagecompute));
+			System.out.println(empwagecompute);
 		}
 	}
 	
