@@ -1,57 +1,59 @@
-import java.security.KeyStore.Entry;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+public class EmpWageCompute{
 
-public class EmpWageCompute {
+	private String companyName;
+	private int wagePerHr;
+	private int workingDays;
+	private int workingHrs;
 
-	public static void main(String[] args) {
-		System.out.println("Welcome");
-		int isFullTime = 1;
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public int getWagePerHr() {
+		return wagePerHr;
+	}
+
+	public int getWorkingDays() {
+		return workingDays;
+	}
+
+	public int getWorkingHrs() {
+		return workingHrs;
+	}
+
+	public EmpWageCompute(String companyName, int wagePerHr, int workingDays, int workingHrs) {
+		this.companyName = companyName;
+		this.wagePerHr = wagePerHr;
+		this.workingDays = workingDays;
+		this.workingHrs = workingHrs;
+
+	}
+
+	public static void empAttendance() {
+		int present = 1;
 
 		int empCheck = (int) Math.floor(Math.random() * 10) % 2;
 		// System.out.println(empCheck);
-		if (empCheck == isFullTime) {
+		if (empCheck == present) {
 			System.out.println("Employee is present");
 		} else {
 			System.out.println("Employee is absent");
 		}
 
-		int wagePerHr = 20;
-		wageComputeforEmp(wagePerHr);
-		wageTillCondition(wagePerHr);
+	}
 
-		// Day22 UC8 -- Compute wage for multiple companies
-		Map<String, Integer> companyWiseWage = new HashMap<>();
-		List<String> companies = new LinkedList<>();
-		companies.add("Symantic");
-		companies.add("TechInfo");
-		companies.add("doodle");
-		companies.add("MegaHard");
-		companies.add("Locus");
-		Scanner sc = new Scanner(System.in);
-		for (String company : companies) {
+	public static void main(String[] args) {
+		System.out.println("Welcome");
+		empAttendance(); // attendace check is implemented as a static method now
 
-			System.out.println("For " + company + " Enter below info");
-			System.out.println("Enter daily working hours");
-			int workingHrs = sc.nextInt();
-			System.out.println("Enter wage per hour");
-			wagePerHr = sc.nextInt();
-			System.out.println("Enter working hours per month");
-			int workingDays = sc.nextInt();
+		// Day23 UC9 -- building objects for multiple companies to compute wage
 
-			int monthlywage = monthlyWageCompute(workingHrs, wagePerHr, workingDays);
-			companyWiseWage.put(company, monthlywage);
-
-		}
-		sc.close();
-
-		for (String company : companyWiseWage.keySet()) {
-			System.out.println("For company " + company + " monthly emp wage is " + companyWiseWage.get(company));
-
-		}
+		EmpWageCompute company1 = new EmpWageCompute("Synechron", 5, 20, 8);
+		System.out.print("For Company " + company1.getCompanyName() + " Total wage is ");
+		System.out.println(monthlyWageCompute(company1));
+		EmpWageCompute company2 = new EmpWageCompute("Doodle", 10, 22, 6);
+		System.out.print("For Company " + company2.getCompanyName() + " Total wage is ");
+		System.out.println(monthlyWageCompute(company2));
 
 	}
 
@@ -76,7 +78,7 @@ public class EmpWageCompute {
 
 		int dailyWage = dailyWageCompute(workingHrs, wagePerHr);
 		System.out.println("Daily full time employee wage is " + dailyWage);
-		int monthlyWage = monthlyWageCompute(workingHrs, wagePerHr, 20);
+		int monthlyWage = 20 * dailyWage;
 		System.out.println("Monthly wage of an employee is " + monthlyWage);
 	}
 
@@ -86,10 +88,10 @@ public class EmpWageCompute {
 
 	}
 
-	public static int monthlyWageCompute(int workingHrs, int wagePerHr, int workingDays) {
+	public static int monthlyWageCompute(EmpWageCompute empwagecompute) {
 
-		int dailyWage = dailyWageCompute(workingHrs, wagePerHr);
-		return dailyWage * workingDays;
+		int dailyWage = dailyWageCompute(empwagecompute.workingHrs, empwagecompute.wagePerHr);
+		return dailyWage * empwagecompute.workingDays;
 
 	}
 
