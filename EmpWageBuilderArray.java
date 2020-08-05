@@ -1,29 +1,27 @@
 import java.util.LinkedList;
 
-public class EmpWageBuilderArray implements IComputeEmpWage{
-	
+public class EmpWageBuilderArray implements IComputeEmpWage {
+
 	private LinkedList<EmpWageCompute> companyEmpWageList;
-	
+
 	public EmpWageBuilderArray() {
-		companyEmpWageList = new LinkedList<>(); //UC 12 -- used linked list
+		companyEmpWageList = new LinkedList<>(); // UC 12 -- used linked list
 	}
-	
-	public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs)  {
+
+	public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs) {
 		companyEmpWageList.add(new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs));
-		
+
 	}
-	
+
 	public void computeEmpWage() {
-		for(int i =0;i<companyEmpWageList.size();i++) {
+		for (int i = 0; i < companyEmpWageList.size(); i++) {
 			EmpWageCompute empwagecompute = companyEmpWageList.get(i);
 			empwagecompute.setTotalWage(this.monthlyWageCompute(empwagecompute));
+			System.out.println(
+					"Daily wage for " + empwagecompute.getCompanyName() + " is " + empwagecompute.getDailywage());
 			System.out.println(empwagecompute);
 		}
 	}
-	
-	
-	
-	
 
 	public static void main(String[] args) {
 		System.out.println("Welcome");
@@ -34,7 +32,7 @@ public class EmpWageBuilderArray implements IComputeEmpWage{
 		empwagebuilder.addCompanyEmpWage("Synechron", 5, 20, 6);
 		empwagebuilder.addCompanyEmpWage("Doodle", 10, 22, 8);
 		empwagebuilder.computeEmpWage();
-		
+
 	}
 
 //Use case 7 -- Created separate method to compute wage for employee
@@ -68,9 +66,10 @@ public class EmpWageBuilderArray implements IComputeEmpWage{
 
 	}
 
-	public  int monthlyWageCompute(EmpWageCompute empwagecompute) {
+	public int monthlyWageCompute(EmpWageCompute empwagecompute) {
 
 		int dailyWage = dailyWageCompute(empwagecompute.getWorkingHrs(), empwagecompute.getWagePerHr());
+		empwagecompute.setDailywage(dailyWage);
 		return dailyWage * empwagecompute.getWorkingDays();
 
 	}
@@ -109,8 +108,7 @@ public class EmpWageBuilderArray implements IComputeEmpWage{
 		monthlyWage = hoursReached * empRatePerHr;
 		System.out.println("Wage for this month is " + monthlyWage);
 	}
-	
-	
+
 	public static void empAttendance() {
 		int present = 1;
 
@@ -123,6 +121,5 @@ public class EmpWageBuilderArray implements IComputeEmpWage{
 		}
 
 	}
-
 
 }

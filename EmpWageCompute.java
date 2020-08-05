@@ -4,6 +4,15 @@ public class EmpWageCompute {
 	private int wagePerHr;
 	private int workingDays;
 	private int workingHrs;
+	private int dailywage;
+	
+	public int getDailywage() {
+		return dailywage;
+	}
+
+	public void setDailywage(int dailywage) {
+		this.dailywage = dailywage;
+	}
 	private int totalWage;
 
 	public int getTotalWage() {
