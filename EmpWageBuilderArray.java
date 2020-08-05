@@ -1,4 +1,5 @@
-public class EmpWageBuilderArray {
+
+public class EmpWageBuilderArray implements IComputeEmpWage{
 	
 	private int numOfCompany=0;
 	private EmpWageCompute[] companyEmpWageArray;
@@ -7,12 +8,12 @@ public class EmpWageBuilderArray {
 	  companyEmpWageArray = new EmpWageCompute[5];
 	}
 	
-	private void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs)  {
+	public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs)  {
 		companyEmpWageArray[numOfCompany]= new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs);
 		numOfCompany++;
 	}
 	
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for(int i =0;i<numOfCompany;i++) {
 			companyEmpWageArray[i].setTotalWage(this.monthlyWageCompute(companyEmpWageArray[i]));
 			System.out.println(companyEmpWageArray[i]);
