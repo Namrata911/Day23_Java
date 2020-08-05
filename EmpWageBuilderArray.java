@@ -1,15 +1,22 @@
+
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class EmpWageBuilderArray implements IComputeEmpWage {
 
 	private LinkedList<EmpWageCompute> companyEmpWageList;
+	private Map<String, EmpWageCompute> companyToEmpWageMap;
 
 	public EmpWageBuilderArray() {
 		companyEmpWageList = new LinkedList<>(); // UC 12 -- used linked list
+		companyToEmpWageMap = new HashMap<>();
 	}
 
 	public void addCompanyEmpWage(String companyName, int wagePerHr, int workingDays, int workingHrs) {
-		companyEmpWageList.add(new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs));
+		EmpWageCompute empwagecompute = new EmpWageCompute(companyName, wagePerHr, workingDays, workingHrs);
+		companyEmpWageList.add(empwagecompute);
+		companyToEmpWageMap.put(companyName, empwagecompute);
 
 	}
 
@@ -32,6 +39,7 @@ public class EmpWageBuilderArray implements IComputeEmpWage {
 		empwagebuilder.addCompanyEmpWage("Synechron", 5, 20, 6);
 		empwagebuilder.addCompanyEmpWage("Doodle", 10, 22, 8);
 		empwagebuilder.computeEmpWage();
+		System.out.println("Total wage for Synechron company is " + empwagebuilder.getTotalWage("Synechron"));
 
 	}
 
@@ -120,6 +128,12 @@ public class EmpWageBuilderArray implements IComputeEmpWage {
 			System.out.println("Employee is absent");
 		}
 
+	}
+
+	@Override
+	public int getTotalWage(String company) {
+
+		return companyToEmpWageMap.get(company).getTotalWage();
 	}
 
 }

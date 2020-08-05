@@ -1,3 +1,4 @@
+
 public class EmpWageCompute {
 
 	private String companyName;
